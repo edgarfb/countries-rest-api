@@ -1,0 +1,29 @@
+.App {
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 1rem;
+  border-bottom: 1px solid #ddd;
+}
+.head h1 {
+  font-size: 1rem;
+  margin: 0;
+}
+.head img {
+  height: 0.9rem;
+  width: 0.9rem;
+  transform: rotateZ(-25deg);
+  margin-right: 0.5rem;
+}
+.switcher {
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+main {
+  padding: 1rem;
+}
