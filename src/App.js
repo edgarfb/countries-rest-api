@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
-
+import logo from "./logo.svg";
+import "./App.css";
+import Card from "./components/Card";
+const HARD_DATA = [
+  {
+    name: "Argentina",
+    population: "54.554.333",
+    region: "Americas",
+    capital: "Ciudad de Buenos Aires",
+    imgSrc: "https://restcountries.eu/data/arg.svg",
+  },
+  {
+    name: "Argentina",
+    population: "54.554.333",
+    region: "Americas",
+    capital: "Ciudad de Buenos Aires",
+    imgSrc: "https://restcountries.eu/data/asm.svg",
+  },
+];
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {HARD_DATA.map((c) => {
+        return (
+          <Card
+            name={c.name}
+            population={c.population}
+            region={c.region}
+            capital={c.capital}
+            img={c.imgSrc}
+          />
+        );
+      })}
     </div>
   );
 }
