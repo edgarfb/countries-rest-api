@@ -1,26 +1,9 @@
 import React from "react";
-import logo from "./logo.svg";
 import moon from "./moon-regular.svg";
 import styles from "./App.module.css";
 import Card from "./components/Card";
+import SearchBar from "./components/SearchBar";
 
-console.log(moon);
-const HARD_DATA = [
-  {
-    name: "Argentina",
-    population: "54.554.333",
-    region: "Americas",
-    capital: "Ciudad de Buenos Aires",
-    imgSrc: "https://restcountries.eu/data/arg.svg",
-  },
-  {
-    name: "Germany",
-    population: "54.554.333",
-    region: "Americas",
-    capital: "Ciudad de Buenos Aires",
-    imgSrc: "https://restcountries.eu/data/deu.svg",
-  },
-];
 function App() {
   const [allCountries, setAllCountries] = React.useState([]);
   const [firstTenCountries, setFirstTenCountries] = React.useState([]);
@@ -52,7 +35,9 @@ function App() {
           Dark mode
         </div>
       </header>
-      <main>
+
+      <SearchBar />
+      <main className={styles.mainContent}>
         {firstTenCountries.map((c) => {
           return (
             <Card

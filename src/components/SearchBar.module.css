@@ -1,0 +1,33 @@
+.searchForm {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--white);
+  box-shadow: 0 2px 3px 0px #ccc;
+  margin: 1rem;
+  border-radius: 6px;
+}
+
+.searchIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+}
+
+.searchIcon img {
+  height: 1rem;
+  width: 1rem;
+  /* color: #ccc; */
+  /* TODO this does not work --- need to change the color*/
+}
+.searchInput {
+  border: none;
+}
+::placeholder {
+  color: #ccc;
+}
+.searchInput:focus-visible {
+  outline: none;
+}

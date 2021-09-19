@@ -7,7 +7,8 @@
   display: flex;
   justify-content: space-between;
   padding: 2rem 1rem;
-  border-bottom: 1px solid #ddd;
+  /* border-bottom: 1px solid #ddd; */
+  box-shadow: 0 1px 3px 0px #ccc;
 }
 .head h1 {
   font-size: 1rem;
@@ -18,6 +19,10 @@
   width: 0.9rem;
   transform: rotateZ(-25deg);
   margin-right: 0.5rem;
+}
+
+.mainContent {
+  background-color: var(--ligth-bg);
 }
 .switcher {
   font-size: 0.9rem;

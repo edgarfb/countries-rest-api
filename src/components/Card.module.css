@@ -2,6 +2,8 @@
   margin-bottom: 1rem;
   border-radius: 6px;
   min-width: 288px;
+  background-color: var(--white);
+  box-shadow: 0 2px 3px 0px #ccc;
 }
 .countryData {
   padding: 1rem 2rem;
