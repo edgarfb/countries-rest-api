@@ -1,0 +1,35 @@
+.flag {
+}
+
+.flag img {
+  width: 100%;
+}
+.countryData h3 {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+.mainData {
+  color: var(--color-secondary);
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+.mainData span {
+  font-weight: normal;
+}
+.mainData h4 {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+.secondaryData {
+  color: var(--color-secondary);
+  font-weight: 600;
+}
+.secondaryData h4 {
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+.secondaryData h4 span {
+  font-weight: normal;
+}

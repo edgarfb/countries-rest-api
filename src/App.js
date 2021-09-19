@@ -12,7 +12,6 @@ function App() {
   const [allCountries, setAllCountries] = React.useState([]);
   const [theme, setTheme] = React.useState("light");
   const [firstTenCountries, setFirstTenCountries] = React.useState([]);
-  console.log(firstTenCountries);
 
   // add or remove the classes in the App
   const themeHandler = () => {
@@ -57,6 +56,7 @@ function App() {
               {firstTenCountries.map((c) => {
                 return (
                   <Card
+                    key={c.name}
                     name={c.name}
                     population={c.population}
                     region={c.region}

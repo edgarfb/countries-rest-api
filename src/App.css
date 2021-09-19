@@ -2,11 +2,13 @@
   --bg-primary: hsl(209, 23%, 22%);
   --bg-secondary: hsl(207, 26%, 17%);
   --color-primary: white;
+  --color-secondary: hsl(0, 0%, 98%);
 }
 .light {
   --bg-primary: hsl(0, 0%, 100%);
   --bg-secondary: hsl(0, 0%, 98%);
-  --color-primary: black;
+  --color-primary: hsl(207, 26%, 17%);
+  --color-seconday: hsl(209, 23%, 22%);
 }
 
 .App {
