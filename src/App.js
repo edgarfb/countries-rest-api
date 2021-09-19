@@ -5,11 +5,14 @@ import "./App.css";
 import Card from "./components/Card";
 import SearchBar from "./components/SearchBar";
 import FilterByRegion from "./components/FilterByRegion";
+import { Route, Switch } from "react-router-dom";
+import CountryDetails from "./pages/CountryDetails";
 
 function App() {
   const [allCountries, setAllCountries] = React.useState([]);
   const [theme, setTheme] = React.useState("light");
   const [firstTenCountries, setFirstTenCountries] = React.useState([]);
+  console.log(firstTenCountries);
 
   // add or remove the classes in the App
   const themeHandler = () => {
@@ -44,23 +47,32 @@ function App() {
         </div>
       </header>
 
-      <main className="mainContent">
-        <SearchBar isDark={theme === "light" ? false : true} />
-        <FilterByRegion isDark={theme === "light" ? false : true} />
-        <section className="content">
-          {firstTenCountries.map((c) => {
-            return (
-              <Card
-                name={c.name}
-                population={c.population}
-                region={c.region}
-                capital={c.capital}
-                img={c.flag}
-              />
-            );
-          })}
-        </section>
-      </main>
+      <Switch>
+        <main className="mainContent">
+          {/* I'm used isDark to change the path of the svg icons */}
+          <Route path="/" exact>
+            <SearchBar isDark={theme === "light" ? false : true} />
+            <FilterByRegion isDark={theme === "light" ? false : true} />
+            <section className="content">
+              {firstTenCountries.map((c) => {
+                return (
+                  <Card
+                    name={c.name}
+                    population={c.population}
+                    region={c.region}
+                    capital={c.capital}
+                    img={c.flag}
+                  />
+                );
+              })}
+            </section>
+          </Route>
+
+          <Route path="/country-details">
+            <CountryDetails />
+          </Route>
+        </main>
+      </Switch>
     </div>
   );
 }
