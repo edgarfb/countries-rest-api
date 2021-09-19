@@ -3,6 +3,7 @@ import moon from "./moon-regular.svg";
 import styles from "./App.module.css";
 import Card from "./components/Card";
 import SearchBar from "./components/SearchBar";
+import FilterByRegion from "./components/FilterByRegion";
 
 function App() {
   const [allCountries, setAllCountries] = React.useState([]);
@@ -37,6 +38,7 @@ function App() {
       </header>
 
       <SearchBar />
+      <FilterByRegion />
       <main className={styles.mainContent}>
         {firstTenCountries.map((c) => {
           return (

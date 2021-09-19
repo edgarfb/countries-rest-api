@@ -1,0 +1,40 @@
+.region {
+  width: 50%;
+  position: relative;
+  font-size: 0.8rem;
+}
+.select {
+  display: flex;
+  background-color: #fff;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  box-shadow: 0 2px 3px 0px #ccc;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.icon img {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.options {
+  position: absolute;
+  z-index: 10;
+  background-color: var(--white);
+  width: 100%;
+}
+
+.options option {
+  cursor: pointer;
+  padding: 0;
+  padding: 0 1rem;
+  margin-bottom: 0.5rem;
+}
