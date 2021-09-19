@@ -1,14 +1,16 @@
 import React from "react";
 import styles from "./CountryDetails.module.css";
 import CardDetails from "../components/CardDetails";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function CountryDetails() {
   const [country, setCountry] = React.useState({});
-  const path = "Germany";
+  const path = "Argentina";
+  const params = useParams();
+  console.log(params.name);
 
   React.useEffect(() => {
-    fetch(`https://restcountries.eu/rest/v2/name/${path}`)
+    fetch(`https://restcountries.eu/rest/v2/name/${params.name}`)
       .then((res) => res.json())
       .then((data) => {
         let tinyData = data.map((d) => {

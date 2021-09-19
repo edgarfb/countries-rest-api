@@ -12,6 +12,7 @@ function App() {
   const [allCountries, setAllCountries] = React.useState([]);
   const [theme, setTheme] = React.useState("light");
   const [firstTenCountries, setFirstTenCountries] = React.useState([]);
+  const [countryPath, setCountryPath] = React.useState("path");
 
   // add or remove the classes in the App
   const themeHandler = () => {
@@ -68,7 +69,7 @@ function App() {
             </section>
           </Route>
 
-          <Route path="/country-details">
+          <Route path="/country-details/:name">
             <CountryDetails />
           </Route>
         </main>
