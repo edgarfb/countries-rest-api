@@ -4,15 +4,17 @@
   font-size: 0.8rem;
   /* margin: 0 1rem; */
   margin-bottom: 1rem;
+  color: var(--color-primary);
 }
 .select {
   display: flex;
-  background-color: #fff;
+  background-color: var(--bg-primary);
   justify-content: space-between;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   margin-bottom: 6px;
   border-radius: 6px;
-  box-shadow: 0 2px 3px 0px #ccc;
+  /* color: var(--color-primary); */
+  box-shadow: 0 2px 3px 0px var(--bg-secondary);
 }
 
 .icon {
@@ -26,12 +28,16 @@
   width: 0.8rem;
   height: 0.8rem;
 }
+svg {
+  fill: yellow;
+}
 
 .options {
   position: absolute;
   z-index: 10;
-  background-color: var(--white);
+  /* background-color: var(--white); */
   width: 100%;
+  background-color: var(--bg-primary);
 }
 
 .options option {

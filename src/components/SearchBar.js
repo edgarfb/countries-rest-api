@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "./SearchBar.module.css";
-import searchSvgIcon from "../search-solid.svg";
+import searchSvgIcon from "../images/search-solid.svg";
+import searchSvgIconBlack from "../images/search-solid-black.svg";
 
-function SearchBar() {
+function SearchBar(props) {
   return (
     <form
       className={styles.searchForm}
@@ -13,7 +14,10 @@ function SearchBar() {
       }}
     >
       <button className={styles.searchIcon}>
-        <img src={searchSvgIcon} alt="Search icon" />
+        <img
+          src={props.isDark ? searchSvgIcon : searchSvgIconBlack}
+          alt="Search icon"
+        />
       </button>
       <input
         className={styles.searchInput}

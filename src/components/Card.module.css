@@ -3,8 +3,9 @@
   border-radius: 6px;
   min-width: 256px;
   width: 100%;
-  background-color: var(--white);
-  box-shadow: 0 2px 3px 0px #ccc;
+  color: var(--color-primary);
+  background-color: var(--bg-primary);
+  box-shadow: 0 2px 3px 0px var(--bg-secondary);
 }
 .countryData {
   padding: 1rem 2rem;

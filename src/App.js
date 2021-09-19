@@ -1,5 +1,6 @@
 import React from "react";
-import moon from "./moon-regular.svg";
+import moon from "./images/moon-regular.svg";
+import sun from "./images/sun-regular.svg";
 import "./App.css";
 import Card from "./components/Card";
 import SearchBar from "./components/SearchBar";
@@ -37,25 +38,28 @@ function App() {
       <header className="head">
         <h1>Where in the world?</h1>
         <div className="switcher" onClick={themeHandler}>
-          <img src={moon} alt="A nice moon" />
-          Dark mode
+          <img src={theme === "light" ? moon : sun} alt="A nice moon" />
+
+          {theme === "light" ? "Dark mode" : "Light mode"}
         </div>
       </header>
 
       <main className="mainContent">
-        <SearchBar />
-        <FilterByRegion />
-        {firstTenCountries.map((c) => {
-          return (
-            <Card
-              name={c.name}
-              population={c.population}
-              region={c.region}
-              capital={c.capital}
-              img={c.flag}
-            />
-          );
-        })}
+        <SearchBar isDark={theme === "light" ? false : true} />
+        <FilterByRegion isDark={theme === "light" ? false : true} />
+        <section className="content">
+          {firstTenCountries.map((c) => {
+            return (
+              <Card
+                name={c.name}
+                population={c.population}
+                region={c.region}
+                capital={c.capital}
+                img={c.flag}
+              />
+            );
+          })}
+        </section>
       </main>
     </div>
   );

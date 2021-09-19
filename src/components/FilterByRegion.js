@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "./FilterByRegion.module.css";
-import arrow from "../chevron-down-solid.svg";
+import arrow from "../images/chevron-down-solid.svg";
+import arrowBlack from "../images/chevron-down-solid-black.svg";
 
-function FilterByRegion() {
+function FilterByRegion(props) {
   const [isClicked, setIsClicked] = React.useState(false);
   const clickArrowHandler = () => {
     setIsClicked(isClicked ? false : true);
@@ -22,7 +23,7 @@ function FilterByRegion() {
       <div className={styles.select}>
         <div className={styles.label}>Filter by Region</div>
         <div className={styles.icon} onClick={clickArrowHandler}>
-          <img src={arrow} alt="Arrow" />
+          <img src={props.isDark ? arrow : arrowBlack} alt="Arrow" />
         </div>
       </div>
 
