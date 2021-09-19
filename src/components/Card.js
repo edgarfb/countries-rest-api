@@ -1,11 +1,14 @@
 import React from "react";
 import styles from "./Card.module.css";
+import { Link } from "react-router-dom";
 
 function Card(props) {
   return (
     <div className={styles.card}>
       <div className={styles.flag}>
-        <img src={props.img} alt={`${props.name}'s flag`} />
+        <Link to="/country-details">
+          <img src={props.img} alt={`${props.name}'s flag`} />
+        </Link>
       </div>
       <div className={styles.countryData}>
         <h3>{props.name}</h3>
