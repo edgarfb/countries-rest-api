@@ -1,0 +1,60 @@
+/* .dark {
+  --dark-Blue: hsl(209, 23%, 22%);
+  --dark-bg: hsl(207, 26%, 17%);
+}
+.light {
+  --light-txt-color: hsl(200, 15%, 8%);
+  --light-input-color: hsl(0, 0%, 52%);
+  --light-bg: hsl(0, 0%, 98%);
+  --white: hsl(0, 0%, 100%);
+} */
+
+.dark {
+  --bg-primary: hsl(209, 23%, 22%);
+  --bg-secondary: hsl(207, 26%, 17%);
+  --color-primary: white;
+  --white: hsl(0, 0, 100%);
+}
+.light {
+  --bg-primary: hsl(0, 0%, 100%);
+  --bg-secondary: hsl(0, 0%, 98%);
+  --color-primary: black;
+  --white: hsl(0, 0, 100%);
+}
+
+.App {
+  width: 320px;
+  margin: 0 auto;
+  background-color: var(--bg-primary);
+}
+
+.head {
+  display: flex;
+  color: var(--color-primary);
+  background-color: var(--bg-primary);
+  justify-content: space-between;
+  padding: 2rem 1rem;
+  box-shadow: 0 1px 3px 0px #ccc;
+}
+.head h1 {
+  font-size: 1rem;
+  margin: 0;
+}
+.head img {
+  height: 0.9rem;
+  width: 0.9rem;
+  transform: rotateZ(-25deg);
+  margin-right: 0.5rem;
+}
+
+.mainContent {
+  padding: 1rem;
+  background-color: var(--bg-secondary);
+}
+.switcher {
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}

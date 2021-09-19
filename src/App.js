@@ -1,15 +1,20 @@
 import React from "react";
 import moon from "./moon-regular.svg";
-import styles from "./App.module.css";
+import "./App.css";
 import Card from "./components/Card";
 import SearchBar from "./components/SearchBar";
 import FilterByRegion from "./components/FilterByRegion";
 
 function App() {
   const [allCountries, setAllCountries] = React.useState([]);
+  const [theme, setTheme] = React.useState("light");
   const [firstTenCountries, setFirstTenCountries] = React.useState([]);
 
-  console.log(firstTenCountries);
+  // add or remove the classes in the App
+  const themeHandler = () => {
+    setTheme(() => (theme === "light" ? "dark" : "light"));
+  };
+
   React.useEffect(() => {
     fetch("https://restcountries.eu/rest/v2/all")
       .then((res) => res.json())
@@ -28,18 +33,18 @@ function App() {
       });
   }, []);
   return (
-    <div className={styles.App}>
-      <header className={styles.head}>
+    <div className={`App ${theme}`}>
+      <header className="head">
         <h1>Where in the world?</h1>
-        <div className={styles.switcher}>
+        <div className="switcher" onClick={themeHandler}>
           <img src={moon} alt="A nice moon" />
           Dark mode
         </div>
       </header>
 
-      <SearchBar />
-      <FilterByRegion />
-      <main className={styles.mainContent}>
+      <main className="mainContent">
+        <SearchBar />
+        <FilterByRegion />
         {firstTenCountries.map((c) => {
           return (
             <Card

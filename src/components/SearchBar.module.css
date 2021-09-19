@@ -2,9 +2,10 @@
   display: flex;
   align-items: center;
   padding: 1rem;
-  background-color: var(--white);
+  background-color: var(--bg-secondary);
   box-shadow: 0 2px 3px 0px #ccc;
-  margin: 1rem;
+  /* margin: 1rem; */
+  margin-bottom: 1rem;
   border-radius: 6px;
 }
 

@@ -7,6 +7,16 @@ function FilterByRegion() {
   const clickArrowHandler = () => {
     setIsClicked(isClicked ? false : true);
   };
+  //   TODO =>>>> add function to handler the options and filter it
+  const options = (
+    <div className={styles.options}>
+      <option value="Africa">Africa</option>
+      <option value="America">America</option>
+      <option value="Asia">Asia</option>
+      <option value="Europe">Europe</option>
+      <option value="Oceania">Oceania</option>
+    </div>
+  );
   return (
     <div className={styles.region} role="select">
       <div className={styles.select}>
@@ -16,15 +26,7 @@ function FilterByRegion() {
         </div>
       </div>
 
-      {isClicked && (
-        <div className={styles.options}>
-          <option value="Africa">Africa</option>
-          <option value="America">America</option>
-          <option value="Asia">Asia</option>
-          <option value="Europe">Europe</option>
-          <option value="Oceania">Oceania</option>
-        </div>
-      )}
+      {isClicked && options}
     </div>
   );
 }

@@ -2,6 +2,8 @@
   width: 50%;
   position: relative;
   font-size: 0.8rem;
+  /* margin: 0 1rem; */
+  margin-bottom: 1rem;
 }
 .select {
   display: flex;
@@ -37,4 +39,7 @@
   padding: 0;
   padding: 0 1rem;
   margin-bottom: 0.5rem;
+}
+.options option:hover {
+  background-color: var(--light-bg);
 }

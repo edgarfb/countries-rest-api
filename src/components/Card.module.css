@@ -1,7 +1,8 @@
 .card {
   margin-bottom: 1rem;
   border-radius: 6px;
-  min-width: 288px;
+  min-width: 256px;
+  width: 100%;
   background-color: var(--white);
   box-shadow: 0 2px 3px 0px #ccc;
 }
@@ -21,8 +22,8 @@
 }
 
 .flag {
-  min-height: 180px;
-  height: 180px;
+  min-height: 165px;
+  height: 165px;
 }
 
 .flag img {
