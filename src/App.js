@@ -51,8 +51,10 @@ function App() {
         <main className="mainContent">
           {/* I'm used isDark to change the path of the svg icons */}
           <Route path="/" exact>
-            <SearchBar isDark={theme === "light" ? false : true} />
-            <FilterByRegion isDark={theme === "light" ? false : true} />
+            <div className="finder">
+              <SearchBar isDark={theme === "light" ? false : true} />
+              <FilterByRegion isDark={theme === "light" ? false : true} />
+            </div>
             <section className="content">
               {firstTenCountries.map((c) => {
                 return (
