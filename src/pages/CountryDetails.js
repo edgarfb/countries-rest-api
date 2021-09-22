@@ -5,7 +5,6 @@ import { Link, useParams } from "react-router-dom";
 
 function CountryDetails() {
   const [country, setCountry] = React.useState({});
-  const path = "Argentina";
   const params = useParams();
   console.log(params.name);
 
@@ -31,11 +30,10 @@ function CountryDetails() {
       });
   }, []);
 
-  console.log(country);
   return (
     <div>
       <Link to="/">
-        <a>Home</a>
+        <a className={styles.back}>Back</a>
       </Link>
       <h1>Countries detalis</h1>
       <CardDetails

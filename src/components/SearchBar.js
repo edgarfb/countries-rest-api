@@ -20,6 +20,9 @@ function SearchBar(props) {
         />
       </button>
       <input
+        onChange={(e) => {
+          props.onFindCountryByName(e);
+        }}
         className={styles.searchInput}
         type="text"
         placeholder="Search for a country..."

@@ -3,12 +3,14 @@
   --bg-secondary: hsl(207, 26%, 17%);
   --color-primary: white;
   --color-secondary: hsl(0, 0%, 98%);
+  --shadow: hsl(0, 0%, 52%);
 }
 .light {
   --bg-primary: hsl(0, 0%, 100%);
   --bg-secondary: hsl(0, 0%, 98%);
   --color-primary: hsl(207, 26%, 17%);
   --color-seconday: hsl(209, 23%, 22%);
+  --shadow: hsl(0, 0%, 52%);
 }
 
 .App {
@@ -24,7 +26,9 @@
   background-color: var(--bg-primary);
   justify-content: space-between;
   padding: 2rem 1rem;
-  box-shadow: 0 2px 3px 0px var(--bg-secondary);
+  box-shadow: 0px 2px 3px -2px var(--shadow);
+  -webkit-box-shadow: 0px 2px 3px -2px var(--shadow);
+  -moz-box-shadow: 0px 2px 3px -2px var(--shadow);
 }
 .head h1 {
   font-size: 1rem;
@@ -51,4 +55,27 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .App {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .head {
+    padding: 2rem 5rem;
+  }
+  .content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .finder {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+  }
 }
