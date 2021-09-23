@@ -11,23 +11,20 @@ import CountryDetails from "./pages/CountryDetails";
 function App() {
   const [allCountries, setAllCountries] = React.useState([]);
   const [theme, setTheme] = React.useState("light");
-  const [firstTenCountries, setFirstTenCountries] = React.useState([]);
-  const [countryPath, setCountryPath] = React.useState("path");
-
   const [findCountryByName, setFindCountryByName] = React.useState([]);
+  console.log(findCountryByName);
 
   const findCountryByNameHandler = (event) => {
     let target = event.target.value;
     let re = new RegExp(`^${target}`, "gi");
-    let finder = allCountries.filter((country) =>
-      country.name.toLowerCase().match(re)
-    );
+    let finder = allCountries.filter((country) => {
+      return country.name.toLowerCase().match(re);
+    });
     setFindCountryByName([...finder]);
   };
 
   function onRegionValHandler(val) {
-    console.log("onRegionValHandler", val);
-    fetch(`https://restcountries.eu/rest/v2/region/${val}`)
+    fetch(`https://restcountries.com/v2/continent/${val}`)
       .then((res) => res.json())
       .then((data) => console.log(data));
   }
@@ -37,20 +34,20 @@ function App() {
   };
 
   React.useEffect(() => {
-    fetch("https://restcountries.eu/rest/v2/all")
+    fetch("https://restcountries.com/v2/all")
       .then((res) => res.json())
       .then((data) => {
         let tiniData = data.map((t) => {
           return {
+            nativeName: t.nativeName,
             name: t.name,
             population: t.population,
             capital: t.capital,
-            flag: t.flag,
+            flag: t.flags[0],
             region: t.region,
           };
         });
         setAllCountries([...tiniData]);
-        setFirstTenCountries([...tiniData.slice(0, 10)]);
       });
   }, []);
   return (
@@ -83,7 +80,7 @@ function App() {
                 allCountries.map((c) => {
                   return (
                     <Card
-                      key={c.name}
+                      key={Math.random()}
                       name={c.name}
                       population={c.population}
                       region={c.region}
@@ -96,7 +93,7 @@ function App() {
                 findCountryByName.map((c) => {
                   return (
                     <Card
-                      key={c.name}
+                      key={Math.random()}
                       name={c.name}
                       population={c.population}
                       region={c.region}

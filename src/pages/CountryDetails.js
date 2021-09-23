@@ -6,20 +6,20 @@ import { Link, useParams } from "react-router-dom";
 function CountryDetails() {
   const [country, setCountry] = React.useState({});
   const params = useParams();
-  console.log(params.name);
 
   React.useEffect(() => {
-    fetch(`https://restcountries.eu/rest/v2/name/${params.name}`)
+    fetch(`https://restcountries.com/v2/name/${params.name}?fullText=true`)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         let tinyData = data.map((d) => {
           return {
-            flag: d.flag,
+            flag: d.flags[0],
             name: d.name,
             nativeName: d.nativeName,
             population: d.population,
-            region: d.region,
-            subregion: d.subregion,
+            region: d.continent,
+            subregion: d.region,
             capital: d.capital,
             topLevelDomain: d.topLevelDomain[0],
             currencies: d.currencies[0].name,
