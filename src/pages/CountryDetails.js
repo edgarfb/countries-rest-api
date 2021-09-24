@@ -31,11 +31,11 @@ function CountryDetails() {
   }, []);
 
   return (
-    <div>
-      <Link to="/">
-        <a className={styles.back}>Back</a>
+    <div className={styles.container}>
+      <Link className={styles.back} to="/">
+        Back
       </Link>
-      <h1>Countries detalis</h1>
+      {/* <h1>Countries detalis</h1> */}
       <CardDetails
         flag={country.flag}
         name={country.name}

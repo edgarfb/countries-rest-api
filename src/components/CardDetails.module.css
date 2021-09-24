@@ -1,8 +1,23 @@
+.cardDetails {
+  display: flex;
+}
+
 .flag {
+  width: 45%;
 }
 
 .flag img {
   width: 100%;
+  height: 100%;
+}
+.countryData {
+  margin-left: 2rem;
+  width: 55%;
+  padding: 1rem;
+}
+.countryDataInner {
+  display: flex;
+  justify-content: space-between;
 }
 .countryData h3 {
   color: var(--color-primary);

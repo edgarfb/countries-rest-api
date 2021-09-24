@@ -3,7 +3,7 @@
   --bg-secondary: hsl(207, 26%, 17%);
   --color-primary: white;
   --color-secondary: hsl(0, 0%, 98%);
-  --shadow: hsl(0, 0%, 52%);
+  --shadow: hsl(207, 26%, 17%);
 }
 .light {
   --bg-primary: hsl(0, 0%, 100%);
