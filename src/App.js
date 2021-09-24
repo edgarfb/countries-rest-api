@@ -11,8 +11,9 @@ import CountryDetails from "./pages/CountryDetails";
 function App() {
   const [allCountries, setAllCountries] = React.useState([]);
   const [theme, setTheme] = React.useState("light");
-  const [findCountryByName, setFindCountryByName] = React.useState([]);
-  console.log(findCountryByName);
+  const [showCountry, setShowCountry] = React.useState([]);
+  // const [findCountryByName, setFindCountryByName] = React.useState([]);
+  // console.log(findCountryByName);
 
   const findCountryByNameHandler = (event) => {
     let target = event.target.value;
@@ -20,13 +21,17 @@ function App() {
     let finder = allCountries.filter((country) => {
       return country.name.toLowerCase().match(re);
     });
-    setFindCountryByName([...finder]);
+    setShowCountry([...finder]);
   };
 
   function onRegionValHandler(val) {
-    fetch(`https://restcountries.com/v2/continent/${val}`)
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    // fetch(`https://restcountries.com/v2/continent/${val}`)
+    //   .then((res) => res.json())
+    //   .then((data) => setShowCountry([...data]));
+    let finder = allCountries.filter((country) => country.continent === val);
+
+    console.log(finder);
+    setShowCountry([...finder]);
   }
   // add or remove the classes in the App
   const themeHandler = () => {
@@ -45,6 +50,7 @@ function App() {
             capital: t.capital,
             flag: t.flags[0],
             region: t.region,
+            continent: t.continent,
           };
         });
         setAllCountries([...tiniData]);
@@ -76,21 +82,21 @@ function App() {
               />
             </div>
             <section className="content">
-              {findCountryByName.length === 0 &&
+              {showCountry.length === 0 &&
                 allCountries.map((c) => {
                   return (
                     <Card
                       key={Math.random()}
                       name={c.name}
                       population={c.population}
-                      region={c.region}
+                      region={c.continent}
                       capital={c.capital}
                       img={c.flag}
                     />
                   );
                 })}
-              {findCountryByName.length > 0 &&
-                findCountryByName.map((c) => {
+              {showCountry.length > 0 &&
+                showCountry.map((c) => {
                   return (
                     <Card
                       key={Math.random()}

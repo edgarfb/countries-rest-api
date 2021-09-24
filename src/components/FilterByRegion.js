@@ -6,7 +6,14 @@ import arrowBlack from "../images/chevron-down-solid-black.svg";
 const values = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 function Option(props) {
   return (
-    <option onClick={() => props.onRegionVal(props.val)} value={props.val}>
+    <option
+      onClick={() => {
+        props.onRegionVal(props.val);
+        // I need to do something with this
+        // when I select an option the drop down should be closed
+      }}
+      value={props.val}
+    >
       {props.val}
     </option>
   );
@@ -23,11 +30,6 @@ function FilterByRegion(props) {
       {values.map((region) => (
         <Option val={region} onRegionVal={props.onRegionVal} />
       ))}
-      {/* <option value="Africa">Africa</option>
-      <option value="America">America</option>
-      <option value="Asia">Asia</option>
-      <option value="Europe">Europe</option>
-      <option value="Oceania">Oceania</option> */}
     </div>
   );
   return (
