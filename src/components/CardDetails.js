@@ -1,7 +1,36 @@
 import React from "react";
 import styles from "./CardDetails.module.css";
+import { Link } from "react-router-dom";
 
+function Border(props) {
+  return (
+    <Link
+      to={`/country-details/${props.countryName}`}
+      className={styles.border}
+    >
+      {props.countryName}
+    </Link>
+  );
+}
+
+// Main
 function CardDetails(props) {
+  const [borders, setBorders] = React.useState([]);
+  console.log(props.bordersPath);
+  React.useEffect(() => {
+    if (props.bordersPath) {
+      fetch(`https://restcountries.com/v2/alpha?codes=${props.bordersPath}`)
+        .then((res) => res.json())
+        .then((data) => {
+          let dataFilter = data.filter((data) => data !== null);
+          let countryName = dataFilter.map((c) => {
+            return c.name;
+          });
+          setBorders((prev) => [...countryName]);
+        });
+    }
+  }, [props.bordersPath]);
+
   return (
     <div className={styles.cardDetails}>
       <div className={styles.flag}>
@@ -38,6 +67,13 @@ function CardDetails(props) {
               Languages: <span>{props.languages}</span>
             </h4>
           </div>
+        </div>
+        <div className={styles.borderCountries}>
+          <h4>Border Countries: </h4>
+          {/* continue here --- working but need to fix the styles */}
+          {borders.map((b) => (
+            <Border key={b} countryName={b} />
+          ))}
         </div>
       </div>
     </div>

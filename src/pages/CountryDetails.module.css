@@ -4,6 +4,7 @@
   min-height: 100vh;
 }
 .back {
+  width: 30px;
   border: 1px solid var(--bg-secondary);
   box-shadow: 0px 2px 3px -2px var(--shadow);
   -webkit-box-shadow: 0px 2px 3px -2px var(--shadow);
@@ -13,5 +14,21 @@
   text-decoration: none;
   background-color: var(--bg-primary);
   margin: 2rem 0 3rem 0;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.arrow img {
+  margin-right: 1rem;
+  width: 1rem;
+  height: 1rem;
+}
+.text,
+.arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1rem;
 }

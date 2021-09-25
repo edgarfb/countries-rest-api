@@ -12,8 +12,6 @@ function App() {
   const [allCountries, setAllCountries] = React.useState([]);
   const [theme, setTheme] = React.useState("light");
   const [showCountry, setShowCountry] = React.useState([]);
-  // const [findCountryByName, setFindCountryByName] = React.useState([]);
-  // console.log(findCountryByName);
 
   const findCountryByNameHandler = (event) => {
     let target = event.target.value;
@@ -25,12 +23,7 @@ function App() {
   };
 
   function onRegionValHandler(val) {
-    // fetch(`https://restcountries.com/v2/continent/${val}`)
-    //   .then((res) => res.json())
-    //   .then((data) => setShowCountry([...data]));
     let finder = allCountries.filter((country) => country.continent === val);
-
-    console.log(finder);
     setShowCountry([...finder]);
   }
   // add or remove the classes in the App
@@ -51,6 +44,7 @@ function App() {
             flag: t.flags[0],
             region: t.region,
             continent: t.continent,
+            borders: t.borders,
           };
         });
         setAllCountries([...tiniData]);
@@ -99,7 +93,7 @@ function App() {
                 showCountry.map((c) => {
                   return (
                     <Card
-                      key={Math.random()}
+                      key={Math.random() + Math.random() * 10}
                       name={c.name}
                       population={c.population}
                       region={c.region}
@@ -112,7 +106,7 @@ function App() {
           </Route>
 
           <Route path="/country-details/:name">
-            <CountryDetails />
+            <CountryDetails isDark={theme === "light" ? false : true} />
           </Route>
         </main>
       </Switch>

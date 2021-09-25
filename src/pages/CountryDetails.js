@@ -2,40 +2,48 @@ import React from "react";
 import styles from "./CountryDetails.module.css";
 import CardDetails from "../components/CardDetails";
 import { Link, useParams } from "react-router-dom";
+import arrowLeft from "../images/arrow-left-solid.svg";
+import arrowLeftWithe from "../images/arrow-left-solid-white.svg";
 
-function CountryDetails() {
+function CountryDetails(props) {
   const [country, setCountry] = React.useState({});
   const params = useParams();
-
+  console.log("isDark", props.isDark);
   React.useEffect(() => {
     fetch(`https://restcountries.com/v2/name/${params.name}?fullText=true`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        let tinyData = data.map((d) => {
+        let tinyData = data.map((country) => {
           return {
-            flag: d.flags[0],
-            name: d.name,
-            nativeName: d.nativeName,
-            population: d.population,
-            region: d.continent,
-            subregion: d.region,
-            capital: d.capital,
-            topLevelDomain: d.topLevelDomain[0],
-            currencies: d.currencies[0].name,
-            languages: d.languages.map((l) => l.name).join(", "),
+            flag: country.flags[0],
+            name: country.name,
+            nativeName: country.nativeName,
+            population: country.population,
+            region: country.continent,
+            subregion: country.region,
+            capital: country.capital,
+            topLevelDomain: country.topLevelDomain[0],
+            currencies: country.currencies ? country.currencies[0].name : "--",
+            borders: country.borders,
+            bordersPath: country.borders ? country.borders.join(",") : "",
+            languages: country.languages.map((lang) => lang.name).join(", "),
           };
         });
         setCountry(...tinyData);
       });
-  }, []);
+  }, [params.name]);
 
   return (
     <div className={styles.container}>
       <Link className={styles.back} to="/">
-        Back
+        <div className={styles.arrow}>
+          <img
+            src={props.isDark ? arrowLeftWithe : arrowLeft}
+            alt="Arrow to left"
+          />
+        </div>
+        <div className={styles.txt}>Back</div>
       </Link>
-      {/* <h1>Countries detalis</h1> */}
       <CardDetails
         flag={country.flag}
         name={country.name}
@@ -47,6 +55,8 @@ function CountryDetails() {
         topLevelDomain={country.topLevelDomain}
         currencies={country.currencies}
         languages={country.languages}
+        borders={country.borders}
+        bordersPath={country.bordersPath}
       />
     </div>
   );

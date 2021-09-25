@@ -28,12 +28,12 @@ function FilterByRegion(props) {
   const options = (
     <div className={styles.options}>
       {values.map((region) => (
-        <Option val={region} onRegionVal={props.onRegionVal} />
+        <Option key={region} val={region} onRegionVal={props.onRegionVal} />
       ))}
     </div>
   );
   return (
-    <div className={styles.region} role="select">
+    <div className={styles.region}>
       <div className={styles.select}>
         <div className={styles.label}>Filter by Region</div>
         <div className={styles.icon} onClick={clickArrowHandler}>
