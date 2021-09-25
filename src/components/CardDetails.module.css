@@ -1,27 +1,22 @@
 .cardDetails {
   display: flex;
-}
-
-.flag {
-  width: 45%;
+  flex-direction: column;
 }
 
 .flag img {
   width: 100%;
 }
 .countryData {
-  margin-left: 2rem;
-  width: 55%;
-  padding: 1rem;
+  margin-top: 2rem;
 }
 .countryDataInner {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 }
 .countryData h3 {
   color: var(--color-primary);
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin: 0;
   margin-bottom: 1rem;
 }
@@ -52,7 +47,7 @@
 }
 .borderCountries {
   display: flex;
-  /* justify-content: center; */
+  margin-top: 2rem;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -71,6 +66,40 @@
   color: var(--color-primary);
   text-decoration: none;
   background-color: var(--bg-primary);
-  margin-left: 1rem;
+  margin-right: 1rem;
   margin-bottom: 0.5rem;
+}
+
+.border:first-child {
+  margin-left: 1rem;
+}
+
+@media (min-width: 768px) {
+  .cardDetails {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .flag {
+    width: 45%;
+  }
+
+  .countryData {
+    margin-left: 2rem;
+    width: 55%;
+    padding: 1rem;
+  }
+  .countryDataInner {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .countryData h3 {
+    font-size: 2rem;
+  }
+  .borderCountries {
+    margin-top: 0;
+  }
+  .border:first-child {
+    margin-left: 1rem;
+  }
 }
