@@ -41,7 +41,7 @@ function App() {
             name: t.name,
             population: t.population,
             capital: t.capital,
-            flag: t.flags[0],
+            flag: t.flags.svg,
             region: t.region,
             continent: t.continent,
             borders: t.borders,
