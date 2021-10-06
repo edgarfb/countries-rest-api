@@ -23,7 +23,7 @@ function App() {
   };
 
   function onRegionValHandler(val) {
-    let finder = allCountries.filter((country) => country.continent === val);
+    let finder = allCountries.filter((country) => country.region === val);
     setShowCountry([...finder]);
   }
   // add or remove the classes in the App

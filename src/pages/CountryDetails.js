@@ -15,12 +15,12 @@ function CountryDetails(props) {
       .then((data) => {
         let tinyData = data.map((country) => {
           return {
-            flag: country.flags[0],
+            flag: country.flags.svg,
             name: country.name,
             nativeName: country.nativeName,
             population: country.population,
-            region: country.continent,
-            subregion: country.region,
+            region: country.region,
+            subregion: country.subregion,
             capital: country.capital,
             topLevelDomain: country.topLevelDomain[0],
             currencies: country.currencies ? country.currencies[0].name : "--",
@@ -44,6 +44,7 @@ function CountryDetails(props) {
         </div>
         <div className={styles.txt}>Back</div>
       </Link>
+      {console.log(country)}
       <CardDetails
         flag={country.flag}
         name={country.name}
