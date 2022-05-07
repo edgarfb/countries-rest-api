@@ -9,16 +9,19 @@ import { Route, Switch } from "react-router-dom";
 import CountryDetails from "./pages/CountryDetails";
 
 function App() {
-  const [allCountries, setAllCountries] = React.useState([]);
+  const [allCountries, setAllCountries] = React.useState(null);
   const [theme, setTheme] = React.useState("light");
-  const [showCountry, setShowCountry] = React.useState([]);
+  const [showCountry, setShowCountry] = React.useState(null);
+
+  console.log("showCountry", showCountry);
 
   const findCountryByNameHandler = (event) => {
     let target = event.target.value;
     let re = new RegExp(`^${target}`, "gi");
     let finder = allCountries.filter((country) => {
-      return country.name.toLowerCase().match(re);
+      return country.name.common.toLowerCase().match(re);
     });
+    console.log("Finder", finder);
     setShowCountry([...finder]);
   };
 
@@ -32,22 +35,12 @@ function App() {
   };
 
   React.useEffect(() => {
-    fetch("https://restcountries.com/v2/all")
+    fetch("https://restcountries.com/v3.1/all")
       .then((res) => res.json())
-      .then((data) => {
-        let tiniData = data.map((t) => {
-          return {
-            nativeName: t.nativeName,
-            name: t.name,
-            population: t.population,
-            capital: t.capital,
-            flag: t.flags.svg,
-            region: t.region,
-            continent: t.continent,
-            borders: t.borders,
-          };
-        });
-        setAllCountries([...tiniData]);
+      .then((countries) => {
+        setAllCountries(countries);
+        // TODO: feature: ramdomly select the initial countries
+        setShowCountry(countries.slice(0, 10));
       });
   }, []);
   return (
@@ -63,7 +56,6 @@ function App() {
 
       <Switch>
         <main className="mainContent">
-          {/* I'm used isDark to change the path of the svg icons */}
           <Route path="/" exact>
             <div className="finder">
               <SearchBar
@@ -76,19 +68,21 @@ function App() {
               />
             </div>
             <section className="content">
-              {showCountry.length === 0 &&
-                allCountries.map((c) => {
+              {showCountry &&
+                showCountry.map((c) => {
                   return (
                     <Card
-                      key={Math.random()}
-                      name={c.name}
+                      key={c.name.common}
+                      name={c.name.common}
                       population={c.population}
-                      region={c.continent}
-                      capital={c.capital}
-                      img={c.flag}
+                      region={c.region}
+                      capital={c.capital ? c.capital[0] : "No capital"}
+                      img={c.flags.png}
                     />
                   );
                 })}
+            </section>
+            {/*
               {showCountry.length > 0 &&
                 showCountry.map((c) => {
                   return (
@@ -102,7 +96,7 @@ function App() {
                     />
                   );
                 })}
-            </section>
+            </section> */}
           </Route>
 
           <Route path="/country-details/:name">
