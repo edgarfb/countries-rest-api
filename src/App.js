@@ -16,7 +16,7 @@ function App() {
   const [allCountries, setAllCountries] = React.useState(null);
   const [theme, setTheme] = React.useState("light");
   const [countriesToDisplay, setCountriesToDisplay] = React.useState(null);
-  // TODO: Add a state for the filtered matches countries
+
   const [noCountryMatch, setNoCountryMatch] = React.useState(false);
 
   const findCountryByNameHandler = (event) => {
@@ -43,13 +43,20 @@ function App() {
     setTheme(() => (theme === "light" ? "dark" : "light"));
   };
 
+  const random = (reference) => {
+    let random = Math.floor(Math.random() * reference.length - 10);
+    if (random < 0) return (random = 0);
+    return random;
+  };
+
   React.useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
       .then((res) => res.json())
       .then((countries) => {
+        const init = random(countries);
+        const end = init + 10;
         setAllCountries(countries);
-        // TODO: feature: ramdomly select the initial countries
-        setCountriesToDisplay(countries.slice(0, 10));
+        setCountriesToDisplay(countries.slice(init, end));
       });
   }, []);
   return (
