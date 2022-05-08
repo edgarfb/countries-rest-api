@@ -2,32 +2,35 @@ import React from "react";
 import moon from "./images/moon-regular.svg";
 import sun from "./images/sun-regular.svg";
 import "./App.css";
-import Card from "./components/Card";
+
+// Componets
 import SearchBar from "./components/SearchBar";
 import FilterByRegion from "./components/FilterByRegion";
-import { Route, Switch } from "react-router-dom";
 import CountryDetails from "./pages/CountryDetails";
+import CountriesDisplayer from "./components/ContriesDisplayer";
+
+// Router
+import { Route, Switch } from "react-router-dom";
 
 function App() {
   const [allCountries, setAllCountries] = React.useState(null);
   const [theme, setTheme] = React.useState("light");
-  const [showCountry, setShowCountry] = React.useState(null);
-
-  console.log("showCountry", showCountry);
+  const [countriesToDisplay, setCountriesToDisplay] = React.useState(null);
+  // TODO: Add a state for the filtered matches countries
+  // const [noCountryMatch, setNoCountryMatch] = React.useState(false);
 
   const findCountryByNameHandler = (event) => {
     let target = event.target.value;
-    let re = new RegExp(`^${target}`, "gi");
+    let re = new RegExp(`(^[${target}])\\w`, "gi");
     let finder = allCountries.filter((country) => {
       return country.name.common.toLowerCase().match(re);
     });
-    console.log("Finder", finder);
-    setShowCountry([...finder]);
+    if (finder.length > 0) setCountriesToDisplay([...finder]);
   };
 
   function onRegionValHandler(val) {
     let finder = allCountries.filter((country) => country.region === val);
-    setShowCountry([...finder]);
+    setCountriesToDisplay([...finder]);
   }
   // add or remove the classes in the App
   const themeHandler = () => {
@@ -40,7 +43,7 @@ function App() {
       .then((countries) => {
         setAllCountries(countries);
         // TODO: feature: ramdomly select the initial countries
-        setShowCountry(countries.slice(0, 10));
+        setCountriesToDisplay(countries.slice(0, 10));
       });
   }, []);
   return (
@@ -67,36 +70,7 @@ function App() {
                 isDark={theme === "light" ? false : true}
               />
             </div>
-            <section className="content">
-              {showCountry &&
-                showCountry.map((c) => {
-                  return (
-                    <Card
-                      key={c.name.common}
-                      name={c.name.common}
-                      population={c.population}
-                      region={c.region}
-                      capital={c.capital ? c.capital[0] : "No capital"}
-                      img={c.flags.png}
-                    />
-                  );
-                })}
-            </section>
-            {/*
-              {showCountry.length > 0 &&
-                showCountry.map((c) => {
-                  return (
-                    <Card
-                      key={Math.random() + Math.random() * 10}
-                      name={c.name}
-                      population={c.population}
-                      region={c.region}
-                      capital={c.capital}
-                      img={c.flag}
-                    />
-                  );
-                })}
-            </section> */}
+            <CountriesDisplayer countries={countriesToDisplay} />
           </Route>
 
           <Route path="/country-details/:name">
