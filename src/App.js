@@ -17,15 +17,21 @@ function App() {
   const [theme, setTheme] = React.useState("light");
   const [countriesToDisplay, setCountriesToDisplay] = React.useState(null);
   // TODO: Add a state for the filtered matches countries
-  // const [noCountryMatch, setNoCountryMatch] = React.useState(false);
+  const [noCountryMatch, setNoCountryMatch] = React.useState(false);
 
   const findCountryByNameHandler = (event) => {
     let target = event.target.value;
-    let re = new RegExp(`(^[${target}])\\w`, "gi");
+    let re = new RegExp(`(^${target})\\w`, "gi");
     let finder = allCountries.filter((country) => {
       return country.name.common.toLowerCase().match(re);
     });
-    if (finder.length > 0) setCountriesToDisplay([...finder]);
+    if (target === "") setCountriesToDisplay(allCountries.slice(0, 10));
+    else if (target.length > 0 && finder.length > 0) {
+      setCountriesToDisplay([...finder]);
+      setNoCountryMatch(false);
+    } else {
+      setNoCountryMatch(true);
+    }
   };
 
   function onRegionValHandler(val) {
@@ -70,7 +76,14 @@ function App() {
                 isDark={theme === "light" ? false : true}
               />
             </div>
-            <CountriesDisplayer countries={countriesToDisplay} />
+            {!noCountryMatch && (
+              <CountriesDisplayer countries={countriesToDisplay} />
+            )}
+            {noCountryMatch && (
+              <p className="noMatchMessage">
+                There are no countries with that name 😞
+              </p>
+            )}
           </Route>
 
           <Route path="/country-details/:name">

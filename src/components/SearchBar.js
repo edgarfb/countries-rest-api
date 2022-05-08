@@ -10,7 +10,6 @@ function SearchBar(props) {
       onSubmit={(e) => {
         //  TODO here a function the tracker and filter the user input
         e.preventDefault();
-        console.log("hi");
       }}
     >
       <button className={styles.searchIcon}>
@@ -26,6 +25,7 @@ function SearchBar(props) {
         className={styles.searchInput}
         type="text"
         placeholder="Search for a country..."
+        autoFocus
       />
     </form>
   );
