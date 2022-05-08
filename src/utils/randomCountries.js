@@ -1,6 +1,6 @@
 const randomCountries = (countries) => {
-  let init = Math.floor(Math.random() * countries.length - 10);
-  if (init < 0) return (init = 0);
+  const ramdom = Math.floor(Math.random() * countries.length - 10);
+  const init = ramdom < 0 ? 0 : ramdom;
   const end = init + 10;
   return countries.slice(init, end);
 };
