@@ -2,52 +2,61 @@ import React from "react";
 import moon from "./images/moon-regular.svg";
 import sun from "./images/sun-regular.svg";
 import "./App.css";
-import Card from "./components/Card";
+
+// Componets
 import SearchBar from "./components/SearchBar";
 import FilterByRegion from "./components/FilterByRegion";
-import { Route, Switch } from "react-router-dom";
 import CountryDetails from "./pages/CountryDetails";
+import CountriesDisplayer from "./components/ContriesDisplayer";
+
+// Router
+import { Route, Switch } from "react-router-dom";
 
 function App() {
-  const [allCountries, setAllCountries] = React.useState([]);
+  const [allCountries, setAllCountries] = React.useState(null);
   const [theme, setTheme] = React.useState("light");
-  const [showCountry, setShowCountry] = React.useState([]);
+  const [countriesToDisplay, setCountriesToDisplay] = React.useState(null);
+
+  const [noCountryMatch, setNoCountryMatch] = React.useState(false);
 
   const findCountryByNameHandler = (event) => {
     let target = event.target.value;
-    let re = new RegExp(`^${target}`, "gi");
+    let re = new RegExp(`(^${target})\\w`, "gi");
     let finder = allCountries.filter((country) => {
-      return country.name.toLowerCase().match(re);
+      return country.name.common.toLowerCase().match(re);
     });
-    setShowCountry([...finder]);
+    if (target === "") setCountriesToDisplay(allCountries.slice(0, 10));
+    else if (target.length > 0 && finder.length > 0) {
+      setCountriesToDisplay([...finder]);
+      setNoCountryMatch(false);
+    } else {
+      setNoCountryMatch(true);
+    }
   };
 
   function onRegionValHandler(val) {
     let finder = allCountries.filter((country) => country.region === val);
-    setShowCountry([...finder]);
+    setCountriesToDisplay([...finder]);
   }
   // add or remove the classes in the App
   const themeHandler = () => {
     setTheme(() => (theme === "light" ? "dark" : "light"));
   };
 
+  const random = (reference) => {
+    let random = Math.floor(Math.random() * reference.length - 10);
+    if (random < 0) return (random = 0);
+    return random;
+  };
+
   React.useEffect(() => {
-    fetch("https://restcountries.com/v2/all")
+    fetch("https://restcountries.com/v3.1/all")
       .then((res) => res.json())
-      .then((data) => {
-        let tiniData = data.map((t) => {
-          return {
-            nativeName: t.nativeName,
-            name: t.name,
-            population: t.population,
-            capital: t.capital,
-            flag: t.flags.svg,
-            region: t.region,
-            continent: t.continent,
-            borders: t.borders,
-          };
-        });
-        setAllCountries([...tiniData]);
+      .then((countries) => {
+        const init = random(countries);
+        const end = init + 10;
+        setAllCountries(countries);
+        setCountriesToDisplay(countries.slice(init, end));
       });
   }, []);
   return (
@@ -63,7 +72,6 @@ function App() {
 
       <Switch>
         <main className="mainContent">
-          {/* I'm used isDark to change the path of the svg icons */}
           <Route path="/" exact>
             <div className="finder">
               <SearchBar
@@ -75,34 +83,14 @@ function App() {
                 isDark={theme === "light" ? false : true}
               />
             </div>
-            <section className="content">
-              {showCountry.length === 0 &&
-                allCountries.map((c) => {
-                  return (
-                    <Card
-                      key={Math.random()}
-                      name={c.name}
-                      population={c.population}
-                      region={c.continent}
-                      capital={c.capital}
-                      img={c.flag}
-                    />
-                  );
-                })}
-              {showCountry.length > 0 &&
-                showCountry.map((c) => {
-                  return (
-                    <Card
-                      key={Math.random() + Math.random() * 10}
-                      name={c.name}
-                      population={c.population}
-                      region={c.region}
-                      capital={c.capital}
-                      img={c.flag}
-                    />
-                  );
-                })}
-            </section>
+            {!noCountryMatch && (
+              <CountriesDisplayer countries={countriesToDisplay} />
+            )}
+            {noCountryMatch && (
+              <p className="noMatchMessage">
+                There are no countries with that name 😞
+              </p>
+            )}
           </Route>
 
           <Route path="/country-details/:name">

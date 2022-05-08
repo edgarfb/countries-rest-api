@@ -44,6 +44,7 @@
 .mainContent {
   padding: 1rem;
   background-color: var(--bg-secondary);
+  min-height: calc(100vh - 7.5rem);
 }
 
 .content {
@@ -56,6 +57,12 @@
   align-items: center;
   cursor: pointer;
 }
+
+.noMatchMessage {
+  width: 90%;
+  margin: 0 auto;
+}
+
 
 @media (min-width: 768px) {
   .App {
@@ -88,3 +95,4 @@
     margin: 0 auto;
   }
 }
+
