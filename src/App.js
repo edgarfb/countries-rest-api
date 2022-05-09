@@ -55,8 +55,8 @@ function App() {
       });
   }, []);
   return (
-    <div className={`App ${theme}`}>
-      <header className="head">
+    <div className={`app ${theme}`}>
+      <header className="my-header">
         <h1>Where in the world?</h1>
         <div className="switcher" onClick={themeHandler}>
           <img src={theme === "light" ? moon : sun} alt="A nice moon" />
@@ -65,8 +65,8 @@ function App() {
         </div>
       </header>
 
-      <Switch>
-        <main className="mainContent">
+      <main className="main-content">
+        <Switch>
           <Route path="/" exact>
             <div className="finder">
               <SearchBar
@@ -82,7 +82,7 @@ function App() {
               <CountriesDisplayer countries={countriesToDisplay} />
             )}
             {noCountryMatch && (
-              <p className="noMatchMessage">
+              <p className="no-match-message">
                 There are no countries with that name 😞
               </p>
             )}
@@ -91,8 +91,8 @@ function App() {
           <Route path="/country-details/:name">
             <CountryDetails isDark={theme === "light" ? false : true} />
           </Route>
-        </main>
-      </Switch>
+        </Switch>
+      </main>
     </div>
   );
 }

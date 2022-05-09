@@ -16,7 +16,7 @@ function Border(props) {
 // Main
 function CardDetails(props) {
   const [borders, setBorders] = React.useState([]);
-  console.log(props.bordersPath);
+
   React.useEffect(() => {
     if (props.bordersPath) {
       fetch(`https://restcountries.com/v2/alpha?codes=${props.bordersPath}`)

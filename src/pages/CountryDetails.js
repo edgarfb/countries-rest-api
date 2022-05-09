@@ -8,7 +8,6 @@ import arrowLeftWithe from "../images/arrow-left-solid-white.svg";
 function CountryDetails(props) {
   const [country, setCountry] = React.useState({});
   const params = useParams();
-  console.log("isDark", props.isDark);
   React.useEffect(() => {
     fetch(`https://restcountries.com/v2/name/${params.name}?fullText=true`)
       .then((res) => res.json())
@@ -44,7 +43,7 @@ function CountryDetails(props) {
         </div>
         <div className={styles.txt}>Back</div>
       </Link>
-      {console.log(country)}
+
       <CardDetails
         flag={country.flag}
         name={country.name}
