@@ -7,7 +7,7 @@ function Card(props) {
     <div className={styles.card}>
       <div className={styles.flag}>
         {/* <Link to={`/country-details/${props.name}`}> */}
-        <Link to={`/country-details/${props.name}`}>
+        <Link to={`/country-details/${props.code}`}>
           <img src={props.img} alt={`${props.name}'s flag`} />
         </Link>
       </div>
