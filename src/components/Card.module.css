@@ -1,6 +1,7 @@
 .card {
   margin-bottom: 1rem;
   border-radius: 6px;
+  min-height: 367px;
   min-width: 256px;
   width: 256px;
   color: var(--color-primary);
