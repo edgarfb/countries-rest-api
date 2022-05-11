@@ -6,30 +6,14 @@ import arrowLeft from "../images/arrow-left-solid.svg";
 import arrowLeftWithe from "../images/arrow-left-solid-white.svg";
 
 function CountryDetails(props) {
-  const [country, setCountry] = React.useState({});
+  const [country, setCountry] = React.useState(null);
+
   const params = useParams();
-  console.log("isDark", props.isDark);
   React.useEffect(() => {
-    fetch(`https://restcountries.com/v2/name/${params.name}?fullText=true`)
+    fetch(`https://restcountries.com/v3.1/alpha/${params.name}`)
       .then((res) => res.json())
       .then((data) => {
-        let tinyData = data.map((country) => {
-          return {
-            flag: country.flags.svg,
-            name: country.name,
-            nativeName: country.nativeName,
-            population: country.population,
-            region: country.region,
-            subregion: country.subregion,
-            capital: country.capital,
-            topLevelDomain: country.topLevelDomain[0],
-            currencies: country.currencies ? country.currencies[0].name : "--",
-            borders: country.borders,
-            bordersPath: country.borders ? country.borders.join(",") : "",
-            languages: country.languages.map((lang) => lang.name).join(", "),
-          };
-        });
-        setCountry(...tinyData);
+        setCountry(data[0]);
       });
   }, [params.name]);
 
@@ -44,21 +28,7 @@ function CountryDetails(props) {
         </div>
         <div className={styles.txt}>Back</div>
       </Link>
-      {console.log(country)}
-      <CardDetails
-        flag={country.flag}
-        name={country.name}
-        nativeName={country.nativeName}
-        population={country.population}
-        region={country.region}
-        subregion={country.subregion}
-        capital={country.capital}
-        topLevelDomain={country.topLevelDomain}
-        currencies={country.currencies}
-        languages={country.languages}
-        borders={country.borders}
-        bordersPath={country.bordersPath}
-      />
+      {country && <CardDetails country={country} />}
     </div>
   );
 }

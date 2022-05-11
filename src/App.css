@@ -13,14 +13,14 @@
   --shadow: hsl(0, 0%, 52%);
 }
 
-.App {
+.app {
   min-width: 320px;
   
   margin: 0 auto;
   background-color: var(--bg-primary);
 }
 
-.head {
+.my-header {
   display: flex;
   color: var(--color-primary);
 
@@ -31,18 +31,18 @@
   -webkit-box-shadow: 0px 2px 3px -2px var(--shadow);
   -moz-box-shadow: 0px 2px 3px -2px var(--shadow);
 }
-.head h1 {
+.my-header h1 {
   font-size: 1rem;
   margin: 0;
 }
-.head img {
+.my-header img {
   height: 0.9rem;
   width: 0.9rem;
   transform: rotateZ(-25deg);
   margin-right: 0.5rem;
 }
 
-.mainContent {
+.main-content {
   padding: 1rem;
   background-color: var(--bg-secondary);
   min-height: calc(100vh - 7.5rem);
@@ -64,22 +64,22 @@
   cursor: pointer;
 }
 
-.noMatchMessage {
+.no-match-message {
   width: 90%;
   margin: 0 auto;
 }
 
 
 @media (min-width: 768px) {
-  .App {
+  .app {
     width: 100%;
     margin: 0 auto;
   }
-  .head {
+  .my-header {
     margin: 0 auto;
     width: 90%;
   }
-  .head h1 {
+  .my-header h1 {
     margin-left: 1rem;
   }
   .switcher {

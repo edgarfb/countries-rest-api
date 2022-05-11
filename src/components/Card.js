@@ -2,25 +2,25 @@ import React from "react";
 import styles from "./Card.module.css";
 import { Link } from "react-router-dom";
 
-function Card(props) {
+function Card({ country }) {
+  const { cca3, name, flags, population, region, capital } = country;
   return (
     <div className={styles.card}>
       <div className={styles.flag}>
-        {/* <Link to={`/country-details/${props.name}`}> */}
-        <Link to={`/country-details/${props.name}`}>
-          <img src={props.img} alt={`${props.name}'s flag`} />
+        <Link to={`/country-details/${cca3}`}>
+          <img src={flags.png} alt={`${name.common}'s flag`} />
         </Link>
       </div>
       <div className={styles.countryData}>
-        <h3>{props.name}</h3>
+        <h3>{name.common}</h3>
         <h4>
-          Population: <span>{props.population}</span>
+          Population: <span>{population}</span>
         </h4>
         <h4>
-          Region: <span>{props.region}</span>
+          Region: <span>{region}</span>
         </h4>
         <h4>
-          Capital: <span>{props.capital}</span>
+          Capital: <span>{capital}</span>
         </h4>
       </div>
     </div>
