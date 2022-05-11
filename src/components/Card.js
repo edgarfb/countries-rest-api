@@ -1,11 +1,20 @@
 import React from "react";
 import styles from "./Card.module.css";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion/dist/framer-motion";
 
 function Card({ country }) {
   const { cca3, name, flags, population, region, capital } = country;
   return (
-    <div className={styles.card}>
+    <motion.div
+      className={styles.card}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      whileHover={{
+        scale: 1.05,
+        transition: { duration: 0.3 },
+      }}
+    >
       <div className={styles.flag}>
         <Link to={`/country-details/${cca3}`}>
           <img src={flags.png} alt={`${name.common}'s flag`} />
@@ -23,7 +32,7 @@ function Card({ country }) {
           Capital: <span>{capital}</span>
         </h4>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
