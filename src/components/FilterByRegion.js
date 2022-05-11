@@ -2,19 +2,20 @@ import React from "react";
 import styles from "./FilterByRegion.module.css";
 import arrow from "../images/chevron-down-solid.svg";
 import arrowBlack from "../images/chevron-down-solid-black.svg";
+import { motion } from "framer-motion/dist/framer-motion";
 
 const values = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
-function Option(props) {
+function Option({ onRegionVal, val }) {
   return (
     <option
       onClick={() => {
-        props.onRegionVal(props.val);
+        onRegionVal(val);
         // I need to do something with this
         // when I select an option the drop down should be closed
       }}
-      value={props.val}
+      value={val}
     >
-      {props.val}
+      {val}
     </option>
   );
 }
@@ -26,11 +27,15 @@ function FilterByRegion(props) {
   };
   //   TODO =>>>> add function to handler the options and filter it
   const options = (
-    <div className={styles.options}>
+    <motion.div
+      className={styles.options}
+      initial={{ height: 0 }}
+      animate={{ height: "130px" }}
+    >
       {values.map((region) => (
         <Option key={region} val={region} onRegionVal={props.onRegionVal} />
       ))}
-    </div>
+    </motion.div>
   );
   return (
     <div className={styles.region}>
