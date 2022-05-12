@@ -11,6 +11,7 @@
 }
 .countryDataInner {
   display: flex;
+  gap:1rem;
   flex-direction: column;
 }
 .countryData h3 {
@@ -91,7 +92,7 @@
   }
   .countryDataInner {
     flex-direction: row;
-    justify-content: space-between;
+    gap: 2rem;
   }
   .countryData h3 {
     font-size: 2rem;

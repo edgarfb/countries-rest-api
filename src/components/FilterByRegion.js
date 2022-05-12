@@ -10,8 +10,6 @@ function Option({ onRegionVal, val }) {
     <option
       onClick={() => {
         onRegionVal(val);
-        // I need to do something with this
-        // when I select an option the drop down should be closed
       }}
       value={val}
     >
@@ -20,12 +18,11 @@ function Option({ onRegionVal, val }) {
   );
 }
 
-function FilterByRegion(props) {
+function FilterByRegion({ onRegionVal, isDark }) {
   const [isClicked, setIsClicked] = React.useState(false);
   const clickArrowHandler = () => {
     setIsClicked(isClicked ? false : true);
   };
-  //   TODO =>>>> add function to handler the options and filter it
   const options = (
     <motion.div
       className={styles.options}
@@ -33,7 +30,7 @@ function FilterByRegion(props) {
       animate={{ height: "130px" }}
     >
       {values.map((region) => (
-        <Option key={region} val={region} onRegionVal={props.onRegionVal} />
+        <Option key={region} val={region} onRegionVal={onRegionVal} />
       ))}
     </motion.div>
   );
@@ -42,7 +39,7 @@ function FilterByRegion(props) {
       <div className={styles.select}>
         <div className={styles.label}>Filter by Region</div>
         <div className={styles.icon} onClick={clickArrowHandler}>
-          <img src={props.isDark ? arrow : arrowBlack} alt="Arrow" />
+          <img src={isDark ? arrow : arrowBlack} alt="Arrow" />
         </div>
       </div>
 

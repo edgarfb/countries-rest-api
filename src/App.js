@@ -10,7 +10,7 @@ import CountryDetails from "./pages/CountryDetails";
 import CountriesDisplayer from "./components/ContriesDisplayer";
 
 // Router
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 
 // utils
 import randomCountries from "./utils/randomCountries";
@@ -57,7 +57,9 @@ function App() {
   return (
     <div className={`app ${theme}`}>
       <header className="my-header">
-        <h1>Where in the world?</h1>
+        <Link to="/">
+          <h1>Where in the world?</h1>
+        </Link>
         <div className="switcher" onClick={themeHandler}>
           <img src={theme === "light" ? moon : sun} alt="A nice moon" />
 
