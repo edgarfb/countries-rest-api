@@ -67,3 +67,22 @@ Next I want to explore more about:
 
 I really enjoined and I learned a lot about layout whith the content of [Kevin Powell](https://www.kevinpowell.co/).\
 You guys can enroll on [this course](https://courses.kevinpowell.co/conquering-responsive-layouts) totaly free.
+
+## Hi folks!
+
+I have been working on a refactor on the REST [Countries API with color theme switcher](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca)
+
+I added somethings like:
+
+- On the home page I display just 10 random countries
+- I add feedback to the user for edge cases
+- Change the countriesAPI version 2 to the [version 3.1](https://restcountries.com/)
+- I use destructuring instead the props objects
+- I add some animation with [framer motion](https://www.framer.com/motion/)
+
+You can try it out in your own challenge.
+
+Here the challenge
+https://www.frontendmentor.io/solutions/rest-countries-api-react-css-module-LTKMe5_U9
+
+Hope you like it, Chears
